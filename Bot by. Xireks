@@ -1,0 +1,42 @@
+import discord
+import random
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+
+@bot.command()
+async def ТыПлохойБот(ctx):
+    with open('images/mem.jpg', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+
+@bot.command()
+async def ДайДеньги(ctx):
+    with open('images/mem2.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(f'не')
+    await ctx.send(file=picture)
+
+@bot.event
+async def on_ready():
+    print(f'We have logged in as {bot.user}')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Привет! Я бот {bot.user}!')
+
+@bot.command()
+async def ку(ctx):
+    await ctx.send(f'при')
+
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+
+
+bot.run("TOKEN")
